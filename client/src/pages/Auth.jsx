@@ -9,11 +9,14 @@ import axios from 'axios';
 import { ServerUrl } from '../App';
 import { useDispatch } from 'react-redux';
 import { setUserData } from '../redux/userSlice';
+import { useState } from 'react';
 function Auth({isModel = false}) {
     const dispatch = useDispatch()
+    const [authError, setAuthError] = useState("")
 
     const handleGoogleAuth = async () => {
         try {
+            setAuthError("")
             const response = await signInWithPopup(auth,provider)
             let User = response.user
             let name = User.displayName
@@ -26,7 +29,8 @@ function Auth({isModel = false}) {
             
         } catch (error) {
             console.log(error)
-              dispatch(setUserData(null))
+            setAuthError(error?.code || "Google sign-in failed. Please try again.")
+            dispatch(setUserData(null))
         }
     }
   return (
@@ -64,6 +68,12 @@ function Auth({isModel = false}) {
                 Sign in to start AI-powered mock interviews,
         track your progress, and unlock detailed performance insights.
             </p>
+
+            {authError && (
+                <p className='text-sm text-red-600 text-center mb-4 break-words'>
+                    {authError}
+                </p>
+            )}
 
 
             <motion.button 

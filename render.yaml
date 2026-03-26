@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: recroai
+    runtime: node
+    plan: free
+    region: oregon
+    buildCommand: npm install --prefix client && npm install --prefix server && npm run build --prefix client
+    startCommand: npm start --prefix server
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: CLIENT_URL
+        sync: false
+      - key: MONGODB_URL
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: VITE_FIREBASE_APIKEY
+        sync: false

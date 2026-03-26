@@ -47,7 +47,7 @@ app.use("/api/interview" , interviewRouter)
 if (fs.existsSync(clientDistPath)) {
     app.use(express.static(clientDistPath))
 
-    app.get("*", (req, res) => {
+    app.get("/*rest", (req, res) => {
         res.sendFile(path.join(clientDistPath, "index.html"))
     })
 }

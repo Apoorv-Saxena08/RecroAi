@@ -21,18 +21,14 @@ It combines a React frontend with a Node.js and Express backend, MongoDB for per
 - React 19
 - Vite
 - React Router
-- Redux Toolkit
 - Tailwind CSS
-- Motion
-- Recharts
 - Firebase Authentication
 
 ### Backend
 
 - Node.js
 - Express
-- MongoDB with Mongoose
-- JWT auth via httpOnly cookies
+- MongoDB
 - Multer for resume uploads
 - PDF.js for resume text extraction
 - Gemini API for AI workflows
@@ -61,7 +57,7 @@ RecroAi/
 
 ### Authentication
 
-Users sign in with Google through Firebase. The backend creates or finds the user, issues a JWT, and stores it in an httpOnly cookie.
+Users sign in with Google through Firebase. The backend creates or finds the user, and stores it in an cookie.
 
 ### Resume-based Interview Setup
 
